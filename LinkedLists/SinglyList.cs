@@ -14,7 +14,7 @@ public partial class SinglyList<T>
         get
         {
             int length = 0;
-            for (var curr = head;  curr != null; curr = curr.Next, length++)
+            for (var curr = head; curr != null; curr = curr.Next, length++)
             {
                 // empty;
             }
@@ -251,7 +251,7 @@ public partial class SinglyList<T>
 
         int index = 0;
         var curr = head;
-        for (;  curr != null; curr = curr.Next, index++)
+        for (; curr != null; curr = curr.Next, index++)
         {
             if (comparer.Equals(curr.Data, value))
             {
@@ -285,7 +285,7 @@ public partial class SinglyList<T>
 
     public void Iterate(Action<T?> action)
     {
-        for (var curr = head;  curr != null; curr = curr.Next)
+        for (var curr = head; curr != null; curr = curr.Next)
         {
             action(curr.Data);
         }
@@ -334,7 +334,7 @@ public partial class SinglyList<T>
         }
 
         var strings = new SinglyList<string>();
-        for (var curr = head; curr is not null;  curr = curr.Next)
+        for (var curr = head; curr is not null; curr = curr.Next)
         {
             strings.Append(curr.Data?.ToString() ?? string.Empty);
         }
@@ -388,5 +388,126 @@ public partial class SinglyList<T>
         }
 
         return mergedList;
+    }
+
+    private bool SwapNodes(NodeSingly<T> iNode, NodeSingly<T> jNode)
+    {
+        if (iNode is null || jNode is null)
+        {
+            return false;
+        }
+
+        if (iNode == jNode)
+        {
+            return false;
+        }
+
+        if (head == tail)
+        {
+            return false;  // nothing to swap
+        }
+
+        if (iNode.Next == jNode)
+        {
+            // cases handled:
+
+            var iPrev = GetPreviousNodes(iNode, null).iPrevious;
+            var jNext = jNode.Next;
+
+            if (iPrev is not null)
+            {
+                iPrev.Next = jNode;
+            }
+
+            iNode.Next = jNext;
+            jNode.Next = iNode;
+        }
+        else if (jNode.Next == iNode)
+        {
+            // same as the above if branch
+            var jPrev = GetPreviousNodes(null, jNode).jPrevious;
+            var iNext = iNode.Next;
+
+            if (jPrev is not null)
+            {
+                jPrev.Next = iNode;
+            }
+
+            jNode.Next = iNext;
+            iNode.Next = jNode;
+        }
+        else
+        {
+            // cases handled:
+
+            var (iPrev, jPrev) = GetPreviousNodes(iNode, jNode);
+            var (iNext, jNext) = (iNode.Next, jNode.Next);
+
+            if (iPrev is not null)
+            {
+                iPrev.Next = jNode;
+            }
+
+            if (jPrev is not null)
+            {
+                jPrev.Next = iNode;
+            }
+
+            iNode.Next = jNext;
+            jNode.Next = iNext;
+        }
+
+        // head / tail swapping
+        if (head == iNode)
+        {
+            head = jNode;
+        }
+        else if (head == jNode)
+        {
+            head = iNode;
+        }
+
+        if (tail == iNode)
+        {
+            tail = jNode;
+        }
+        else if (tail == jNode)
+        {
+            tail = iNode;
+        }
+
+        return true;
+    }
+
+    private (NodeSingly<T>? iPrevious, NodeSingly<T>? jPrevious) GetPreviousNodes(NodeSingly<T>? iNode, NodeSingly<T>? jNode)
+    {
+        if (head is null)
+        {
+            return (null, null);
+        }
+
+        if (iNode is null && jNode is null)
+        {
+            return (null, null);
+        }
+
+        NodeSingly<T>? iPrev = null, jPrev = null;
+        var curr = head;
+
+        do
+        {
+            if (iNode is not null && curr.Next == iNode)
+            {
+                iPrev = curr;
+            }
+            else if (jNode is not null && curr.Next == jNode)
+            {
+                jPrev = curr;
+            }
+
+            curr = curr.Next;
+        } while (curr != null && (iPrev is null || jPrev is null));
+
+        return (iPrev, jPrev);
     }
 }

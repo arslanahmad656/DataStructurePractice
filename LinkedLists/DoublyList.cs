@@ -1,4 +1,5 @@
-﻿using LinkedLists.Nodes;
+﻿using System.Security;
+using LinkedLists.Nodes;
 
 namespace LinkedLists;
 
@@ -136,5 +137,132 @@ public class DoublyList<T>
         }
 
         return mergedList;
+    }
+
+    private bool SwapNodes(NodeDoubly<T> iNode, NodeDoubly<T> jNode)
+    {
+        if (iNode == jNode)
+        {
+            return false;
+        }
+
+        if (iNode.Next == jNode)
+        {
+            // adjacent when j follows i.
+            // Cases handled:
+            // null <-- A <--> X <--> Y <--> B --> null (none of the nodes at the border)
+            // null <-- X <--> Y <--> A <--> B --> null (nodes to swap at the head)
+            // null <-- A <--> B <--> X <--> Y --> null (nodes to swap at the tail)
+            // null <-- X <--> Y --> null (only two nodes. hence both at the head and at the tail)
+
+            var iPrev = iNode.Previous;
+            var jNext = jNode.Previous;
+
+            // neighbours
+            if (iPrev is not null)
+            {
+                // iPrev is null when iNode is the head node
+                iPrev.Next = jNode;
+            }
+
+            if (jNext is not null)
+            {
+                // jNext is null when jNode is the tail node
+                jNext.Previous = iNode;
+            }
+
+            // self
+            iNode.Previous = jNode;
+            iNode.Next = jNext;
+            jNode.Previous = iPrev;
+            jNode.Next = iNode;
+        }
+        else if (jNode.Next == iNode)
+        {
+            // apart from the position of the nodes, the rest is the same as in the above if branch
+
+            var jPrev = jNode.Previous;
+            var iNext = iNode.Next;
+
+            if (jPrev is not null)
+            {
+                jPrev.Next = iNode;
+            }
+
+            if (iNext is not null)
+            {
+                iNext.Previous = jNode;
+            }
+
+            jNode.Previous = iNode;
+            jNode.Next = iNext;
+            iNode.Previous = jPrev;
+            iNode.Next = jNode;
+        }
+        else
+        {
+            // Case when the nodes to swap are not adjacent.
+            // Handles the following cases:
+            // null <-- A <--> X <--> B <--> C <--> Y <--> D --> null (none of the nodes at the borders)
+            // null <-- X <--> A <--> B <--> Y <--> C --> null (one of the node at the head)
+            // null <-- A <--> B <--> X <--> C <--> D <--> Y --> null (one of the node at the tail)
+
+            var iPrev = iNode.Previous;
+            var iNext = iNode.Next;
+            var jPrev = jNode.Previous;
+            var jNext = jNode.Next;
+
+            // handle the links of the neighbours
+            if (iPrev is not null)
+            {
+                // when the iNode is head, the iPrev is null.
+                iPrev.Next = jNode;
+            }
+
+            if (iNext is not null)
+            {
+                // when the iNode is tail, the iNext is null
+                iNext.Previous = jNode;
+            }
+
+            if (jPrev is not null)
+            {
+                // jPrev is null when jNode is the head node
+                jPrev.Next = iNode;
+            }
+
+            if (jNext is not null)
+            {
+                // jNext is null when jNode is the tail node
+                jNext.Previous = iNode;
+            }
+
+            // Now handle the own links
+            iNode.Previous = jPrev;
+            iNode.Next = jNext;
+            jNode.Previous = iPrev;
+            jNode.Next = iNext;
+        }
+
+        // check if head / tail needs to update
+        if (iNode == head)
+        {
+            head = jNode;
+        }
+        else if (jNode == head)
+        {
+            head = iNode;
+        }
+
+        if (iNode == tail)
+        {
+            tail = jNode;
+        }
+        else if (jNode == tail)
+        {
+            tail = iNode;
+        }
+
+        return true;
     }
 }
