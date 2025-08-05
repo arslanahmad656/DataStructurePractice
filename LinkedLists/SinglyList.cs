@@ -709,4 +709,33 @@ public partial class SinglyList<T>
         tail = kthNode;
         head = nextToK;
     }
+
+    public bool HasCycle()
+    {
+        // Floyd's cycle detection mechanism
+        if (head is null)
+        {
+            return false;
+        }
+
+        var slow = head;
+        var fast = head;
+
+        while (fast is not null && fast.Next != null)
+        {
+            // fast is always faster than slow hence it'll be fast which will reach the null (if present) first.
+            // in other words, if the list does not have a loop, the loop will have returned false before the slow gets a chance to reach the null
+            // hence it safe to assume that slow isn't null.
+            slow = slow!.Next;
+            fast = fast.Next.Next;
+
+            if (slow == fast)
+            {
+                return true; // cycle detected
+            }
+        }
+
+        // loop terminated hence no cycle
+        return false;
+    }
 }
