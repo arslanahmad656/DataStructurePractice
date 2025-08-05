@@ -8,6 +8,8 @@ public class Stack<T>
 
     public bool IsEmpty => !list.HasData;
 
+    public T? Top => Peek();
+
     public int Count { get; private set; }
 
     public void Push(T item)
