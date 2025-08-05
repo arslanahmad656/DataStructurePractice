@@ -1,4 +1,5 @@
-﻿using LinkedLists.Nodes;
+﻿using LinkedLists.Helpers;
+using LinkedLists.Nodes;
 using System.Text;
 
 namespace LinkedLists;
@@ -670,6 +671,42 @@ public partial class SinglyList<T>
         }
 
         prev.Next = node.Next;
-        node.Next = null; 
+        node.Next = null;
+    }
+
+    public void Rotate(int k)
+    {
+        if (head == null)
+        {
+            return; // nothing to rotate
+        }
+
+        if (head == tail)
+        {
+            return; // only one element
+        }
+
+        var totalNodes = this.Length;
+
+        // normalized k will ensure that the edge cases like k > length or k < 0 or k == n* toalNodes are handled by normalizing k such that the following holds:
+        // 0 <= k <= totalNodes
+        int normalizedK = Helper.GetNormalizedKForRotation(k, totalNodes);
+
+        if (k % totalNodes == 0)
+        {
+            return; // no rotation needed since rotating by 0 or by number of nodes yields in the same sequence of nodes
+        }
+
+        NodeSingly<T> kthNode = head;
+        for (var i = 1; i < normalizedK; i++)
+        {
+            kthNode = kthNode.Next!;    // since k is normalized, it is guaranteed that kth node will be found and before that kthNode.Next is never going to be null.
+        }
+
+        var nextToK = kthNode.Next;
+        kthNode.Next = null;
+        tail!.Next = head;
+        tail = kthNode;
+        head = nextToK;
     }
 }

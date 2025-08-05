@@ -1,4 +1,5 @@
 ﻿using System.Security;
+using LinkedLists.Helpers;
 using LinkedLists.Nodes;
 
 namespace LinkedLists;
@@ -8,6 +9,21 @@ public class DoublyList<T>
     private NodeDoubly<T>? head;
     private NodeDoubly<T>? tail;
     private readonly IEqualityComparer<T> comparer = EqualityComparer<T>.Default;
+
+    public int Length
+    {
+        get
+        {
+            int count = 0;
+
+            for (var curr = head; curr != null; curr = curr.Next, count++)
+            {
+                // empty
+            }
+
+            return count;
+        }
+    }
 
     public void Append(T value)
     {
@@ -264,5 +280,44 @@ public class DoublyList<T>
         }
 
         return true;
+    }
+
+    public void Rotate(int k)
+    {
+        if (head == null)
+        {
+            return;
+        }
+
+        if (head == tail)
+        {
+            return;
+        }
+
+        var length = this.Length;
+        var normalizedK = Helper.GetNormalizedKForRotation(k, length);
+
+        if (normalizedK % length == 0)
+        {
+            return;
+        }
+
+        // at this point, 0 < normalizedK < length
+
+        NodeDoubly<T> kthNode = head;
+        for (int i = 1; i < normalizedK; i++)
+        {
+            kthNode = kthNode.Next!; // k is normalized, there is definitely going to be a non-null kthNode.Next
+        }
+
+        var kNext = kthNode.Next;
+
+        tail!.Next = head;
+        head.Previous = tail;
+        kthNode.Next = null;
+        kNext!.Previous = null;
+
+        head = kNext;
+        tail = kthNode;
     }
 }

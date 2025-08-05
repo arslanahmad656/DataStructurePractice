@@ -1,4 +1,5 @@
-﻿using LinkedLists.Nodes;
+﻿using LinkedLists.Helpers;
+using LinkedLists.Nodes;
 using System.Globalization;
 
 namespace LinkedLists;
@@ -317,59 +318,6 @@ public class CircularListDoubly<T>
         return copy;
     }
 
-    public bool SwapNodes(int i, int j)
-    {
-        if (head is null)
-        {
-            return false;
-        }
-
-        if (i < 0 || j < 0)
-        {
-            return false;
-        }
-
-        if (i == j)
-        {
-            return false;
-        }
-
-        if (head == tail)
-        {
-            return false;
-        }
-
-        NodeDoubly<T>? iNode = null;
-        NodeDoubly<T>? jNode = null;
-
-        int index = 0;
-        var curr = head;
-        do
-        {
-            if (index == i)
-            {
-                iNode = curr;
-            }
-
-            if (index == j)
-            {
-                jNode = curr;
-            }
-
-            index++;
-            curr = curr!.Next;
-        } while ((iNode == null || jNode == null) && curr != head);
-
-        if (iNode is null || jNode is null)
-        {
-            // at least one of the index is beyond the total number of nodes.
-
-            return false;
-        }
-
-        // now we know that the swap is possible.
-    }
-
     private bool SwapNodes(NodeDoubly<T> iNode, NodeDoubly<T> jNode)
     {
         if (iNode == jNode)
@@ -457,5 +405,39 @@ public class CircularListDoubly<T>
         }
 
         return true;
+    }
+
+    public void Rotate(int k)
+    {
+        if (head is null)
+        {
+            return;
+        }    
+
+        if (head == tail)
+        {
+            return;
+        }
+
+        int totalNodes = this.Count;
+        var normalizedK = Helper.GetNormalizedKForRotation(k, totalNodes);
+
+        if (normalizedK % totalNodes == 0)
+        {
+            return;
+        }
+
+        // now 0 < normalizedK < totalNodes
+
+        var kthNode = head;
+        for (int i = 1; i < normalizedK; i++)
+        {
+            kthNode = kthNode!.Next;
+        }
+
+        // since it's a circular list, the links stay the same. only the head and tail change.
+
+        head = kthNode!.Next;
+        tail = kthNode;
     }
 }

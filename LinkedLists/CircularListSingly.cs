@@ -1,4 +1,5 @@
 ﻿using System.Linq.Expressions;
+using LinkedLists.Helpers;
 using LinkedLists.Nodes;
 
 namespace LinkedLists;
@@ -391,5 +392,38 @@ public class CircularListSingly<T>
         } while (curr != head && (iPrev is null || jPrev is null));   // Since this is a circular list, none of iPrev and jPrev can be null. (excluding the case when one of the iNode or jNode is null)
 
         return (iPrev, jPrev);
+    }
+
+    private void Rotate(int k)
+    {
+        if (head == null)
+        {
+            return;
+        }
+
+        if (head == tail)
+        {
+            return;
+        }
+
+        var totalNodes = this.Count;
+        var normalizedK = Helper.GetNormalizedKForRotation(k, totalNodes);
+
+        if (normalizedK % totalNodes == 0)
+        {
+            return;
+        }
+
+        // now, 0 < k < totalNodes
+
+        var kthNode = head;
+        for (int i = 1; i < normalizedK; i++)
+        {
+            kthNode = kthNode!.Next;
+        }
+
+        // since it's a circular list, the links stay the same. only the head and tail change.
+        head = kthNode!.Next;
+        tail = kthNode;
     }
 }
