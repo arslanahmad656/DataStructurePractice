@@ -24,6 +24,8 @@ public partial class SinglyList<T>
         }
     }
 
+    public bool HasData => head is not null;
+
     public void Append(T data)
     {
         var node = new NodeSingly<T>
@@ -738,4 +740,6 @@ public partial class SinglyList<T>
         // loop terminated hence no cycle
         return false;
     }
+
+    public T? GetTailValue() => tail is null ? default : tail.Data;
 }

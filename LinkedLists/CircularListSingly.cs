@@ -304,7 +304,7 @@ public class CircularListSingly<T>
             // Handles the following cases:
             // same as the above if branch 
 
-            var (jPrev, _) = GetPreviousNodes(jNode, _);
+            var (jPrev, _) = GetPreviousNodes(jNode, null);
             var iNext = iNode.Next;
 
             jPrev!.Next = iNode;
