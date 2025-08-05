@@ -510,4 +510,166 @@ public partial class SinglyList<T>
 
         return (iPrev, jPrev);
     }
+
+    public void Sort()
+    {
+        // Using Selection sort for this purpose since it suits the best for non-contigious block of memory.
+        if (head is null)
+        {
+            // no element, nothing to sort.
+            return;
+        }
+
+        if (head == tail)
+        {
+            // only one node, already sorted.
+            return;
+        }
+
+        var comparer = Comparer<T>.Default;
+        for (var iNode = head; iNode != tail; iNode = iNode!.Next) // equivalent to for (int i = 0; i < arr.Length  -1; i++)
+        {
+            var minNode = iNode;    // assume that iNode contains the minimum data
+
+            for (var jNode = iNode!.Next; jNode != null; jNode = jNode.Next)    // equivalent to for (int j = i + 1; j < arr.Length; j++)
+            {
+                if (comparer.Compare(jNode!.Data, minNode!.Data) < 0)   // finding the node having mininum data
+                {
+                    minNode = jNode;
+                }
+            }
+
+            if (minNode == iNode)
+            {
+                continue;   // means that iNode is already the minimum one
+            }
+
+            SwapNodes(minNode!, iNode); // otherwise swap the nodes so that the list is sorted till iNode
+            iNode = minNode;    // so that we can continue with our loop from the same position
+        }
+    }
+
+    public void RemoveDuplicatesSorted()
+    {
+        if (head is null)
+        {
+            return;
+        }
+
+        if (head == tail)
+        {
+            return;
+        }
+
+        var comparer = EqualityComparer<T>.Default;
+        for (var curr = head; curr != null;)
+        {
+            T? currData = curr!.Data;
+            T? nextData = default;
+            if (curr!.Next != null)
+            {
+                nextData = curr.Next.Data;
+            }
+
+            if (comparer.Equals(currData, nextData))
+            {
+                // means that the next one is the duplicate of the curr
+                var nextNext = curr.Next!.Next;
+                if (curr.Next is not null)
+                {
+                    curr.Next.Next = null;  // remove the redundaunt reference
+                }
+                curr.Next = nextNext;
+
+                if (nextNext is null)
+                {
+                    tail = curr;    // update the tail if it's the last element
+                }
+            }
+            else
+            {
+                // Advance only when we are sure that we have successfully removed the duplicates of the currData
+                curr = curr.Next;
+            }
+        }
+    }
+
+    public void RemoveDuplicatesUnSorted()
+    {
+        if (head is null)
+        {
+            return;
+        }
+
+        if (head == tail)
+        {
+            return;
+        }
+
+        var comparer = EqualityComparer<T>.Default;
+        for (var curr = head; curr != null; curr = curr.Next)
+        {
+            for (var toCheck = curr.Next; toCheck != null;)
+            {
+                var toCheckNext = toCheck.Next;
+                if (comparer.Equals(curr.Data, toCheck.Data))
+                {
+                    RemoveNode(toCheck);
+                }
+
+                toCheck = toCheckNext;
+            }
+        }
+    }
+
+    private void RemoveNode(NodeSingly<T> node)
+    {
+        if (head is null)
+        {
+            return;
+        }
+
+        if (head == tail)
+        {
+            if (node == head)
+            {
+                head = tail = null;
+            }
+
+            return;
+        }
+
+        if (node == head)
+        {
+            var oldHead = head;
+
+            head = head.Next;
+            oldHead.Next = null;
+
+            return;
+        }
+
+        NodeSingly<T>? prev;
+        for (prev = head; prev != null && prev.Next != node; prev = prev.Next)
+        {
+            // empty
+        }
+
+        if (prev is null)
+        {
+            // impossible case since this could be true only if the node to remove was head but that case has already been handled.
+            return;
+        }
+
+        if (node == tail)
+        {
+            prev.Next = null;
+            tail = prev;
+
+            return;
+        }
+
+        prev.Next = node.Next;
+        node.Next = null; 
+    }
 }
