@@ -1,0 +1,87 @@
+﻿✅ Beginner-Level Warm-ups
+These reinforce basic queue concepts:
+
+Implement a Queue using Stacks (Push Costly and Pop Costly)
+
+Trick: simulating FIFO using LIFO structures.
+
+Implement Stack using Queues (Push Costly and Pop Costly)
+
+You already did this one! Great job.
+
+Check for Palindrome using Queue and Stack
+
+Use a queue and stack to check if a string is a palindrome.
+
+Generate Binary Numbers from 1 to N using a Queue
+
+Input: N = 5 → Output: 1, 10, 11, 100, 101
+
+Trick: BFS-style logic with string enqueuing.
+
+🧠 Intermediate Logic-Based Problems
+First Non-Repeating Character in a Stream
+
+You’ve done this already—good.
+
+Interleave the First Half of a Queue with the Second Half
+
+Input: 1 2 3 4 → Output: 1 3 2 4
+
+Reversing First K elements of a Queue
+
+Queue: 1 2 3 4 5, K=3 → Output: 3 2 1 4 5
+
+Combine stack and queue.
+
+Implement a Circular Queue
+
+Practice both array-based and linked list-based implementations.
+
+Design a Data Structure: Queue with O(1) Min or Max
+
+Implement a queue that supports Enqueue, Dequeue, and GetMin in O(1).
+
+Hint: Use a deque.
+
+💥 Advanced / Tricky Interview Favorites
+Sliding Window Maximum (or Minimum)
+
+Given array and window size k, return max in every window.
+
+Trick: Use deque to keep track of useful elements.
+
+Rotten Oranges (BFS)
+
+2D grid traversal using queue.
+
+You asked about this — BFS on grid. Good for when you do graphs.
+
+Distance of Nearest 1 in Binary Matrix
+
+Like rotten oranges, but starting from all 1s and finding nearest for each 0.
+
+Celebrity Problem
+
+Input: matrix where M[i][j] = 1 means i knows j.
+
+Trick: Use queue or stack to eliminate non-celebrities.
+
+LRU Cache
+
+Queue + HashMap. Also great for design rounds.
+
+Implement a Task Scheduler
+
+Given tasks with cooldowns, schedule them in least amount of time.
+
+🚧 Optional Combo Practice
+Design a Hit Counter
+
+Like tracking number of events (e.g., hits) in the last 5 minutes.
+
+Use queue to maintain timestamps.
+
+Simulate a Browser with Forward and Back Buttons
+
+Stack + Queue combo.

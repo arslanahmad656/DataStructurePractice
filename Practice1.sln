@@ -12,6 +12,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Items", "Items", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 	ProjectSection(SolutionItems) = preProject
 		TODO1 - Stacks.txt = TODO1 - Stacks.txt
+		TODO2 - Rotten Oranges.txt = TODO2 - Rotten Oranges.txt
+		TODO3 - Queues.txt = TODO3 - Queues.txt
 	EndProjectSection
 EndProject
 Global

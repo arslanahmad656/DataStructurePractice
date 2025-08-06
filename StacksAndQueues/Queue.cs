@@ -44,4 +44,10 @@ public class Queue<T>
         success = true;
         return data.GetTailValue();
     }
+
+    public void Clear()
+    {
+        data = new();
+        Count = 0;
+    }
 }

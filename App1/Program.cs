@@ -1,4 +1,6 @@
 ﻿using StacksAndQueues;
+using System.Runtime.CompilerServices;
+using System.Text;
 using IntStack = StacksAndQueues.Stack<int>;
 
 
@@ -12,6 +14,108 @@ using IntStack = StacksAndQueues.Stack<int>;
 
 //ArrayQueue();
 //UnboundQueue();
+//FirstNonRepeatingChars();
+//FirstNBins();
+//InterleaveElementsQueue();
+//ReverseKInQueue();
+MaxMinQueue();
+
+void MaxMinQueue()
+{
+    var maxMinQueue1 = new MinMaxQueue<int>();
+
+    for (int i = 1; i <= 5; i++)
+    {
+        maxMinQueue1.Enqueue(i);
+    }
+
+    for (int i = 1; i <= 5; i++)
+    {
+        maxMinQueue1.Dequeue(out _);
+    }
+}
+
+void ReverseKInQueue()
+{
+    var q = new StacksAndQueues.Queue<int>();
+
+    for (int i = 1; i <= 5; i++)
+    {
+        q.Enqueue(i);
+    }
+
+    PrintQueue(ref q, "Starting state");
+
+    for (int i = -1; i <= 6; i++)
+    {
+        Practice2.ReverseFirstK(i, q);
+
+        PrintQueue(ref q, $"Reverse first {i}");
+
+        Console.WriteLine();
+    }
+}
+
+void InterleaveElementsQueue()
+{
+    for (int i = 1; i <= 11; i++)
+    {
+        var q1 = new StacksAndQueues.Queue<int>();
+
+        for (int j = 1; j < i; j++)
+        {
+            q1.Enqueue(j);
+        }
+
+        PrintQueue(ref q1, "Original");
+
+        Practice2.InterleaveHalfHalf(q1);
+
+        PrintQueue(ref q1, "Interleaved");
+    }
+}
+
+void PrintQueue(ref StacksAndQueues.Queue<int> q, string title)
+{
+    Console.Write($"{title}:");
+
+    var q2 = new StacksAndQueues.Queue<int>();
+    while (!q.IsEmpty)
+    {
+        var el = q.Dequeue(out _);
+        Console.Write($" {el}");
+        q2.Enqueue(el!);
+    }
+
+    Console.WriteLine();
+    q = q2;
+}
+
+void FirstNBins()
+{
+    var bins = Practice2.GenerateFirstNBinaryNumbers(100);
+    foreach (var b in bins)
+    {
+        Console.WriteLine($"{b,15}");
+    }
+}
+
+void FirstNonRepeatingChars()
+{
+    var str = "abcabdefcgdehifghi";
+    var stream = new MemoryStream(Encoding.ASCII.GetBytes(str));
+
+    Console.WriteLine($"String: {str}");
+    Console.WriteLine();
+    Console.WriteLine();
+
+    foreach (var ch in Practice2.FirstNonRepeatingCharacterInStream(stream))
+    {
+        Console.Write(ch);
+    }
+
+    Console.WriteLine();
+}
 
 void UnboundQueue()
 {

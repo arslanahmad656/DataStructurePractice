@@ -1,0 +1,75 @@
+﻿0 represents an empty cell,
+
+1 represents a fresh orange, and
+
+2 represents a rotten orange.
+
+Every minute, any fresh orange that is adjacent (up/down/left/right) to a rotten orange becomes rotten.
+
+🧠 What the problem is asking:
+You need to determine:
+
+How many minutes it will take for all fresh oranges to become rotten, assuming the rotting spreads every minute as described.
+
+If it’s impossible for all fresh oranges to rot (because they're isolated or blocked), return -1.
+
+📦 Input:
+A 2D grid of integers (0, 1, 2) like this:
+
+text
+Copy
+Edit
+[
+  [2,1,1],
+  [1,1,0],
+  [0,1,1]
+]
+📤 Output:
+An integer:
+
+4 (meaning all fresh oranges rot in 4 minutes)
+
+or -1 (if some can never rot)
+
+🔁 Example Visualization:
+Let's say you have:
+
+text
+Copy
+Edit
+Minute 0:
+[2,1,1]
+[1,1,0]
+[0,1,1]
+
+Minute 1:
+[2,2,1]
+[2,1,0]
+[0,1,1]
+
+Minute 2:
+[2,2,2]
+[2,2,0]
+[0,1,1]
+
+Minute 3:
+[2,2,2]
+[2,2,0]
+[0,2,1]
+
+Minute 4:
+[2,2,2]
+[2,2,0]
+[0,2,2]
+After 4 minutes, all oranges are rotten → so return 4.
+
+Let me know when you're ready to discuss the BFS traversal logic behind this problem.
+
+
+
+
+
+
+
+
+You said:
