@@ -1,0 +1,65 @@
+✅ Next Step: Trees
+Learn the structure, traversal techniques, and problem-solving strategies.
+
+What to cover:
+Binary Trees
+
+Preorder, Inorder, Postorder traversal (recursive + iterative)
+
+Level-order traversal (BFS using queue)
+
+Binary Search Trees (BST)
+
+Insert, Delete, Search
+
+Validate BST
+
+Floor/Ceiling, Closest value
+
+Tree Problems
+
+Height of tree, Diameter
+
+Lowest Common Ancestor (LCA)
+
+Path Sum problems
+
+Balanced binary tree check
+
+Invert a binary tree
+
+📌 Why next? Trees combine your understanding of recursion (from stacks) and queues (level order traversal). You’ll also be ready for graphs after this.
+
+⏭ After Trees: Heaps & Priority Queues
+Important for scheduling, greedy, and optimization problems.
+
+Min/Max Heap
+
+Heapify, Heapsort
+
+Top K problems
+
+Median in data stream
+
+⏭ Then: Hash Tables & Tries
+Useful for frequency, lookup, autocomplete, etc.
+
+Custom HashMap/Set
+
+Anagram groupings
+
+Trie insert/search/prefix problems
+
+⏭ Then: Graphs
+Once you’ve done trees, you'll be ready for graphs.
+
+BFS, DFS
+
+Cycle detection
+
+Topological sort
+
+Shortest path (Dijkstra, Bellman-Ford)
+
+Union-Find (Disjoint Set)
+

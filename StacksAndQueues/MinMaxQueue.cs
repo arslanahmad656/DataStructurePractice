@@ -3,8 +3,8 @@
 public class MinMaxQueue<T>
 {
     private readonly Queue<T> mainQ = new();
-    private readonly Deque<T> dqMin = new();
-    private readonly Deque<T> dqMax = new();
+    private readonly Deque1<T> dqMin = new();
+    private readonly Deque1<T> dqMax = new();
     private readonly Comparer<T> comparer = Comparer<T>.Default;
 
     public int Count => mainQ.Count;

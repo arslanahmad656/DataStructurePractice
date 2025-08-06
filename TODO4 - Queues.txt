@@ -1,0 +1,59 @@
+﻿✅ Pure Queue Logic
+These problems are primarily focused on queues without needing knowledge of graphs or grids.
+
+First Unique Number
+
+Track the first non-repeating number in a stream efficiently.
+
+Techniques: Queue + HashMap
+
+Snake Game
+
+Maintain body positions with a queue.
+
+Handle collisions, growth, and food.
+
+🟨 Grid + Queue (BFS Traversal)
+These use 2D grids and BFS. Graph knowledge isn't mandatory but helps.
+
+Rotting Oranges
+
+Multi-source BFS to simulate rotting.
+
+The Maze
+
+Ball rolls until hitting a wall — modified BFS.
+
+Walls and Gates
+
+Fill each empty room with distance to nearest gate (multi-source BFS).
+
+Knight’s Shortest Path
+
+BFS with 8 possible knight moves.
+
+🟦 Graph + Queue (Topological Sort / BFS)
+These require a basic understanding of graphs. Consider visiting these after learning graphs properly.
+
+Course Schedule (I & II)
+
+Topological sorting using BFS (Kahn’s algorithm).
+
+Alien Dictionary
+
+Construct a graph and derive character order via topological sort.
+
+Time Needed to Inform All Employees
+
+Company as a tree/graph, find the time to inform all using BFS.
+
+Jump Game II
+
+Treat each index as a node; perform level-wise BFS to reach the end with min jumps.
+
+🔁 Optional Pre-Graph Starters
+These ease you into graph-style problems via BFS/DFS:
+
+Jumping Numbers
+
+BFS from every digit (0–9), generate jumping numbers up to n.

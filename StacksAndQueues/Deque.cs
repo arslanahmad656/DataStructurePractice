@@ -1,67 +1,96 @@
-﻿using LinkedLists;
-
-namespace StacksAndQueues;
+﻿namespace StacksAndQueues;
 
 public class Deque<T>
 {
-    // front is head, back is tail
-    private readonly DoublyList<T> data = new();
-
-    public int Count { get; private set; }
-    public bool IsEmpty => Count == 0;
-
-    public void EnqueueFront(T item)
+    private class Node
     {
-        // insert at head
-        data.Prepend(item);
-        Count++;
-    }
+        public T Value;
+        public Node? Prev;
+        public Node? Next;
 
-    public T? DequeueFront(out bool success)
-    {
-        // get from head
-        success = !IsEmpty;
-        if (IsEmpty)
+        public Node(T value)
         {
-            return default;
+            Value = value;
         }
-
-        var item = data.ElementAtHead();
-        data.RemoveAtHead();
-        Count--;
-
-        return item;
     }
 
-    public void EnqueueBack(T item)
-    {
-        data.Append(item);
-        Count++;
-    }
+    private Node? head;
+    private Node? tail;
+    private int count;
 
-    public T? DequeueBack(out bool success)
+    public int Count => count;
+    public bool IsEmpty => count == 0;
+
+    // Add to front
+    public void AddFront(T value)
     {
-        success = !IsEmpty;
-        if (IsEmpty)
+        var node = new Node(value);
+        if (head == null)
         {
-            return default;
+            head = tail = node;
         }
-
-        var item = data.ElementAtTail();
-        data.RemoveAtTail();
-        Count--;
-        return item;
+        else
+        {
+            node.Next = head;
+            head.Prev = node;
+            head = node;
+        }
+        count++;
     }
 
-    public T? PeekFront(out bool success)
+    // Add to back
+    public void AddBack(T value)
     {
-        success = !IsEmpty;
-        return data.ElementAtHead();
+        var node = new Node(value);
+        if (tail == null)
+        {
+            head = tail = node;
+        }
+        else
+        {
+            node.Prev = tail;
+            tail.Next = node;
+            tail = node;
+        }
+        count++;
     }
 
-    public T? PeekBack(out bool success)
+    // Remove from front
+    public T RemoveFront()
     {
-        success = !IsEmpty;
-        return data.ElementAtTail();
+        if (IsEmpty) throw new InvalidOperationException("Deque is empty");
+        var value = head!.Value;
+        head = head.Next;
+        if (head != null) head.Prev = null;
+        else tail = null;
+        count--;
+        return value;
+    }
+
+    // Remove from back
+    public T RemoveBack()
+    {
+        if (IsEmpty) throw new InvalidOperationException("Deque is empty");
+        var value = tail!.Value;
+        tail = tail.Prev;
+        if (tail != null) tail.Next = null;
+        else head = null;
+        count--;
+        return value;
+    }
+
+    // Peek front
+    public T PeekFront()
+    {
+        if (IsEmpty) throw new InvalidOperationException("Deque is empty");
+        return head!.Value;
+    }
+
+    // Peek back
+    public T PeekBack()
+    {
+        if (IsEmpty) throw new InvalidOperationException("Deque is empty");
+        return tail!.Value;
     }
 }
+

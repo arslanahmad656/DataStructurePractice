@@ -18,7 +18,19 @@ using IntStack = StacksAndQueues.Stack<int>;
 //FirstNBins();
 //InterleaveElementsQueue();
 //ReverseKInQueue();
-MaxMinQueue();
+//MaxMinQueue();
+
+MaxInKBruteForce();
+
+void MaxInKBruteForce()
+{
+    var arr = Enumerable.Range(1, 10).ToArray();
+    var k = 3;
+    var maxes = Practice3.GetMaxInEachWindowBruteForce(arr, k);
+
+    Console.WriteLine($"Original Array: {string.Join(", ", arr.Select(x => x.ToString()))}");
+    Console.WriteLine($"Maxes Array: {string.Join(", ", maxes.Select(x => x.ToString()))}");
+}
 
 void MaxMinQueue()
 {
