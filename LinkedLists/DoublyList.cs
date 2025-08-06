@@ -58,6 +58,48 @@ public class DoublyList<T>
         head = node;
     }
 
+    public T? ElementAtHead() => head is null ? default : head.Data;
+
+    public T? ElementAtTail() => tail is null ? default : tail.Data;
+
+    public bool RemoveAtHead()
+    {
+        if (head is null)
+        {
+            return false;
+        }
+
+        if (head == tail)
+        {
+            head = tail = null;
+        }
+
+        head = head!.Next;
+        head!.Previous!.Next = null;
+        head.Previous = null;
+
+        return true;
+    }
+
+    public bool RemoveAtTail()
+    {
+        if (tail is null)
+        {
+            return false;
+        }
+
+        if (tail == head)
+        {
+            return false;
+        }
+
+        tail = tail.Previous;
+        tail!.Next!.Previous = null;
+        tail.Next = null;
+
+        return true;
+    }
+
     public bool IsPalindrome()
     {
         if (head is null || tail is null)

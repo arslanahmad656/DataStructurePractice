@@ -8,7 +8,54 @@ using IntStack = StacksAndQueues.Stack<int>;
 //PostfixToInfix();
 //PrefixToInfix();
 //EvaluatePostfixExpression();
-EvaluatePrefixExpressions();
+//EvaluatePrefixExpressions();
+
+//ArrayQueue();
+//UnboundQueue();
+
+void UnboundQueue()
+{
+    var queue = new StacksAndQueues.Queue<int?>();
+    
+    for (int i = 1; i < 10; i++)
+    {
+        Console.WriteLine($"""
+            Total Elements: {queue.Count}
+            Front: {queue.Peek(out _)}
+
+
+            """);
+        queue.Enqueue(i);
+    }
+
+    Console.WriteLine();
+    Console.WriteLine();
+
+    while (!queue.IsEmpty)
+    {
+        Console.WriteLine($"Dequeued: {queue.Dequeue(out _)}. Next element: {queue.Peek(out _)}\n");
+    }
+}
+
+void ArrayQueue()
+{
+    var queue = new QueueBound<int>(5);
+    for (int i = 1; i < 7; i++)
+    {
+        Console.WriteLine($"""
+            Current number of elements: {queue.Count}
+            Element at the front: {queue.Peek(out _)}
+            Enqueue success: {queue.Enqueue(i)}
+            """);
+    }
+
+    Console.WriteLine($"Elements inserted.\n");
+
+    while (!queue.IsEmpty)
+    {
+        Console.WriteLine($"Dequeued: {queue.Dequeue(out _)}");
+    }
+}
 
 void EvaluatePrefixExpressions()
 {

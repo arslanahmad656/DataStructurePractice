@@ -1,0 +1,39 @@
+﻿Coding Tasks (Progressive)
+🔹 Beginner
+Implement a stack using:
+
+Arrays
+
+Singly linked list
+
+Check if a given string has balanced parentheses.
+
+Input: "{[()]}" → Valid
+
+Input: "{[(])}" → Invalid
+
+Reverse a string using a stack.
+
+Evaluate a postfix expression (e.g., "2 3 1 * + 9 -").
+
+🔹 Intermediate
+Design a MinStack with push, pop, top, and getMin() in O(1).
+
+Implement a stack using queues.
+
+Implement an iterator using stack to traverse a binary tree in-order (non-recursively).
+
+Solve the Next Greater Element problem:
+
+For each element in an array, find the next greater one to its right.
+
+🔹 Advanced
+Largest rectangle in histogram (Leetcode-style):
+
+Given heights of bars, find the max rectangular area using stack.
+
+Sort a stack using only stack operations (no arrays/lists).
+
+Implement a two-stack queue (enqueue, dequeue).
+
+Given an expression in infix notation, convert it to postfix (RPN).
