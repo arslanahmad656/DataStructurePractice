@@ -1,7 +1,10 @@
 ﻿using StacksAndQueues;
 using System.Runtime.CompilerServices;
 using System.Text;
+using Trees;
 using IntStack = StacksAndQueues.Stack<int>;
+using Practice1 = StacksAndQueues.Practice1;
+using TreePractice1 = Trees.Practice1;
 
 
 //TestCreation();
@@ -19,8 +22,128 @@ using IntStack = StacksAndQueues.Stack<int>;
 //InterleaveElementsQueue();
 //ReverseKInQueue();
 //MaxMinQueue();
+//MaxInKBruteForce();
 
-MaxInKBruteForce();
+//Recurse();
+
+//Tree1();
+//NodeHeight();
+//TreeOps();
+IsFull();
+
+void IsFull()
+{
+    var tree1 = new BinaryTree<int>(1, 2, 3, 4, 5);
+    var tree1Full = tree1.IsFull();
+    Console.WriteLine($"Tree 1 is full: {tree1Full}");
+
+    var tree2 = new BinaryTree<int>(1, 2, 3, 4);
+    var tree2Full = tree2.IsFull();
+    Console.WriteLine($"Tree 2 is full: {tree2Full}");
+
+    var tree3 = new BinaryTree<int>(Enumerable.Range(50, 100).ToArray());
+
+    new[] {tree1, tree2, tree3}.ToList().ForEach(t =>  Console.WriteLine($"Total nodes: {t.GetCount()}"));
+
+    var tree4 = new BinaryTree<int>(Enumerable.Range(10, 7).ToArray());
+    var tree5 = new BinaryTree<int>(Enumerable.Range(10, 15).ToArray());
+
+    Console.WriteLine();
+    Console.WriteLine();
+
+    new[] { tree1, tree2, tree3, tree4, tree5 }.ToList().ForEach(t => Console.WriteLine($"Total nodes: {t.GetCount()}. Is Perfect: {t.IsPerfect()}"));
+}
+
+void TreeOps()
+{
+    var tree = new BinaryTree<int>([.. Enumerable.Range(1, 50)]);
+
+    new[] { 0, 1, 3, 6, 12, 21, 27, 45, 55 }.ToList().ForEach(x => Console.WriteLine($"Depth of {x}: {tree.GetNodeDepth(x)}"));
+
+    Console.WriteLine();
+    Console.WriteLine();
+
+    new[] { 0, 1, 21, 45, 56 }.ToList().ForEach(x =>
+    {
+        var node = tree.GetNode(x);
+        Console.WriteLine($"Finding node with value {x}: {node?.ToString() ?? "NA"}");
+    });
+
+    Console.WriteLine();
+    Console.WriteLine();
+}
+
+void NodeHeight()
+{
+    var tree = new BinaryTree<int>
+    {
+        root = new()
+        {
+            Value = 1,
+            Left = new()
+            {
+                Value = 2,
+                Left = new()
+                {
+                    Value = 5
+                },
+                Right = new()
+                {
+                    Value = 4,
+                    Left = new()
+                    {
+                        Value = 7,
+                        Left = new()
+                        {
+                            Value = 10
+                        },
+                        Right = new()
+                        {
+                            Value = 8,
+                            Left = new()
+                            {
+                                Value = 9
+                            }
+                        }
+                    }
+                }
+            },
+            Right = new()
+            {
+                Value = 3
+            },
+        }
+    };
+
+    var height = tree.GetHeight();
+    Console.WriteLine($"Height: {height}");
+}
+
+void Tree1()
+{
+    var tree = new BinaryTree<int?>(1, 2, 3, 4, 5, null, 7);
+
+    Console.Write($"Pre Order: ");
+    TreePractice1.TraverseTreePreOrder(tree.root, i => Console.Write(i));
+    Console.WriteLine();
+
+    Console.Write($"In Order: ");
+    TreePractice1.TraverseTreeInOrder(tree.root, i => Console.Write(i));
+    Console.WriteLine();
+
+    Console.Write($"Post Order: ");
+    TreePractice1.TraverseTreePostOrder(tree.root, i => Console.Write(i));
+    Console.WriteLine();
+
+    Console.Write($"Level Order: ");
+    TreePractice1.TraverseTreeLevelOrder(tree.root, i => Console.Write(i));
+    Console.WriteLine();
+}
+
+void Recurse()
+{
+    Trees.Practice1.ActRecursively([1, 2, 3, 4, 5, 6], Console.WriteLine);
+}
 
 void MaxInKBruteForce()
 {

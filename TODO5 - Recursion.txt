@@ -1,0 +1,65 @@
+﻿✅ Level 1: Base Case Mastery (Straightforward Recursion)
+These build comfort with defining base cases and simple recursive calls.
+
+Factorial
+Input: n = 5 → Output: 120
+
+Fibonacci (Naive)
+Input: n = 6 → Output: 8
+
+Sum of digits
+Input: 123 → Output: 6
+
+Reverse a string
+Input: "hello" → Output: "olleh"
+
+Print numbers from 1 to N / N to 1
+Input: N = 5 → Output: 1 2 3 4 5 (or 5 4 3 2 1)
+
+✅ Level 2: Classic Recursion Patterns (Linear + Divide & Conquer)
+Check if a string is a palindrome
+Input: "madam" → Output: true
+
+Count number of zeros in a number
+Input: 102030 → Output: 3
+
+Find power (xⁿ)
+
+Linear recursion
+
+Optimized (Divide & Conquer)
+
+Find GCD of two numbers (Euclidean algorithm)
+Input: a = 48, b = 18 → Output: 6
+
+Array sum recursively
+Input: [1, 2, 3, 4] → Output: 10
+
+✅ Level 3: Recursion with Backtracking / Branching
+Generate all subsequences of a string
+Input: "abc" → Output: ["", "a", "b", "c", "ab", "ac", "bc", "abc"]
+
+Generate all permutations of a string
+Input: "abc" → Output: ["abc", "acb", "bac", "bca", "cab", "cba"]
+
+N-th Fibonacci with Memoization (Top-Down DP)
+
+Count number of ways to reach end of stairs (1 or 2 steps at a time)
+Input: n = 3 → Output: 3
+
+Tower of Hanoi
+Move n disks from rod A to rod C using rod B
+
+✅ Level 4: Thinking Recursively
+Check if array is sorted (recursively)
+Input: [1, 2, 3, 4, 5] → Output: true
+
+Find first index of an element in array
+Input: [1, 2, 5, 3], x = 5 → Output: 2
+
+Print all binary strings of length N without consecutive 1s
+
+Print all paths from top-left to bottom-right in a grid (only right & down)
+
+Subset sum
+Can you form a sum K using elements of array?

@@ -14,7 +14,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Items", "Items", "{02EA681E
 		TODO1 - Stacks.txt = TODO1 - Stacks.txt
 		TODO2 - Rotten Oranges.txt = TODO2 - Rotten Oranges.txt
 		TODO3 - Queues.txt = TODO3 - Queues.txt
+		TODO4 - Queues.txt = TODO4 - Queues.txt
+		TODO5 - Recursion.txt = TODO5 - Recursion.txt
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trees", "Trees\Trees.csproj", "{269CE7D8-1545-4C82-AAE2-762D3818FEA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,6 +38,10 @@ Global
 		{6B27C417-B810-495F-84B5-306BA680E41C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B27C417-B810-495F-84B5-306BA680E41C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B27C417-B810-495F-84B5-306BA680E41C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{269CE7D8-1545-4C82-AAE2-762D3818FEA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{269CE7D8-1545-4C82-AAE2-762D3818FEA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{269CE7D8-1545-4C82-AAE2-762D3818FEA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{269CE7D8-1545-4C82-AAE2-762D3818FEA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
