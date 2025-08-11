@@ -126,4 +126,19 @@ public partial class BinarySearchTree<T>
 
         RecurseInOrder(root.Right, action);
     }
+
+    private static int GetNodeHeightRecursively(Node<T>? root)
+    {
+        if (root is null)
+        {
+            return -1;
+        }
+
+        var heightOfLeftSubtree = GetNodeHeightRecursively(root.Left);
+        var heightOfRightSubtree = GetNodeHeightRecursively(root.Right);
+
+        var nodeHeight = 1 + Math.Max(heightOfLeftSubtree, heightOfRightSubtree);
+
+        return nodeHeight;
+    }
 }

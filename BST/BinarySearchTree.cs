@@ -12,6 +12,22 @@ public partial class BinarySearchTree<T>
 
     public bool Search(T value) => Search(root, value) is not null;
 
+    public IEnumerable<T> TraverseInOrder() => InOrderIteratively(root);
+
+    public IEnumerable<T> TraverserPreOrder() => PreOrderIteratively(root);
+
+    public IEnumerable<T> TraversePostOrder() => PostOrderIteratively(root);
+
+    public IEnumerable<T> TraverseLevelOrder() => LevelOrderIteratively(root);
+
+    public IEnumerable<List<T>> TraverseLevelOrderByLevel() => LevelOrderByLevelIteratively(root);
+
+    public bool IsValid() => IsBstValidViaInOrderTraversalIterative(root);
+
+    public int GetHeight() => GetNodeHeight(root);
+
+    public T? GetLowestCommonAncestor(T value1, T value2) => FindLowestCommonAncestor(root, value1, value2) is Node<T> a ? a.Value : default;
+
     public T? GetMinimum(out bool success)
     {
         success = root is not null;
@@ -111,14 +127,4 @@ public partial class BinarySearchTree<T>
 
         return true;
     }
-
-    public IEnumerable<T> TraverseInOrder() => InOrderIteratively(root);
-
-    public IEnumerable<T> TraverserPreOrder() => PreOrderIteratively(root);
-
-    public IEnumerable<T> TraversePostOrder() => PostOrderIteratively(root);
-
-    public IEnumerable<T> TraverseLevelOrder() => LevelOrderIteratively(root);
-
-    public IEnumerable<List<T>> TraverseLevelOrderByLevel() => LevelOrderByLevelIteratively(root);
 }

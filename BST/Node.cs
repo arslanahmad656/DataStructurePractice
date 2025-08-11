@@ -49,5 +49,9 @@ public class Node<T>(T value)
 
     public static bool operator >(T? value, Node<T> node) => node > value;
 
+    public static bool operator <=(Node<T> node, T? value) => Comparer<T>.Default.Compare(node.Value, value) <= 0;
+
+    public static bool operator >=(Node<T> node, T? value) => Comparer<T>.Default.Compare(node.Value, value) >= 0;
+
     public override string ToString() => $"Value: {Value} Degree: {Degree} Left: {(Left is null ? default : Left.Value)} Right: {(Right is null ? default : Right.Value)}";
 }
